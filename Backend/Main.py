@@ -44,6 +44,6 @@ def GetProfessores():
 
 
 
-#rodar a api - aqui oh
+#rodar a api 
 
 app.run()
