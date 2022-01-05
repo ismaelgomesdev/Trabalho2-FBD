@@ -1,4 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { HistoricoAnoComponent } from '../historico-ano/historico-ano.component';
 
 @Component({
   selector: 'app-tabela-alunos',
@@ -9,15 +11,21 @@ export class TabelaAlunosComponent implements OnInit {
   @Input()
   dataSource!: any[];
 
-  displayedColumns: string[] = ['matricula', 'nome', 'semestre', 'dataNasc'];
+  displayedColumns: string[] = ['matricula', 'nome', 'semestre', 'dataNasc', 'historico'];
 
-  constructor() { 
+  constructor(public dialog: MatDialog) {
   }
-  
-  
+
+
   ngOnInit(): void {
-    console.log(this.dataSource);
-    
+  }
+
+  alerta(matricula: string) {
+    alert(matricula);
+  }
+
+  openDialog() {
+    this.dialog.open(HistoricoAnoComponent);
   }
 
 }

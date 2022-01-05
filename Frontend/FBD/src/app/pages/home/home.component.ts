@@ -1,4 +1,6 @@
+import { Alunos } from './../../interfaces/alunos';
 import { Component, OnInit } from '@angular/core';
+import { RequestServiceService } from './request-service.service';
 
 @Component({
   selector: 'app-home',
@@ -6,17 +8,38 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
-  dataSource: any[] = [
-    { matricula: 1234, nome: 'João Teste', semestre: 1, dataNasc: '12/12/2001' },
-    { matricula: 4321, nome: 'Maria Teste', semestre: 2, dataNasc: '02/12/2001' },
-    { matricula: 5678, nome: 'José Teste', semestre: 3, dataNasc: '21/02/2002' },
-    { matricula: 8765, nome: 'Ana Teste', semestre: 4, dataNasc: '20/02/2000' },
-  ];
-  constructor() { }
+  dataSource: any = [];
+  dataSourceProf: any = [];
+  dataSourceDisc : any = [];
+  dataSourceTurm : any = [];
+
+
+  constructor(
+    private requestService : RequestServiceService
+  ) { }
 
   ngOnInit(): void {
+
+    var students = this.requestService.getStudents();
+    students.subscribe((data) =>{
+      this.dataSource = data;
+    });
+
+    var teachers = this.requestService.GetProfessores();
+    teachers.subscribe((data) =>{
+      this.dataSourceProf = data;
+    })
+
+    var disciplinas = this.requestService.GetDisciplinas();
+    disciplinas.subscribe((data) =>{
+      this.dataSourceDisc = data;
+    })
+
+    var turmas = this.requestService.GetTurmas();
+    turmas.subscribe((data) =>{
+      this.dataSourceTurm = data;
+    })
+
   }
-
-
 
 }

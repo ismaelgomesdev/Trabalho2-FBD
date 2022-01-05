@@ -27,14 +27,7 @@ def IniciarBaseDados():
 
 @app.route('/pegaralunos')
 def GetAlunos():
-
-    id = request.args.get('id')
-
-    sql = """
-    SELECT * FROM ALUNOS WHERE aluno_id = {}
-    """.format(id)
-
-    response = conn.executar_query_pesquisa(sql)
+    response = aux.RetornarAlunos()
     return jsonify(response)
 
 @app.route('/pegarprofessores')
@@ -42,7 +35,20 @@ def GetProfessores():
     response = aux.RetorarProfessor()
     return jsonify(response)
 
+@app.route('/pegardisciplinas')
+def GetDisciplinas():
+    response = aux.RetornarDisciplinas()
+    return jsonify(response)
 
+@app.route('/pegarturmas')
+def GetTurmas():
+    response = aux.RetornarTurmas()
+    return jsonify(response)
+
+@app.route('/historico-por-ano')
+def GetHistoricoPorAno():
+    response = aux.RetornarHistoricosPorAno(36430)
+    return jsonify(response)
 
 #rodar a api 
 

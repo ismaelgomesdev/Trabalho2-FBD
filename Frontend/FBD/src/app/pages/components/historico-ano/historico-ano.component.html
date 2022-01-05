@@ -1,0 +1,16 @@
+<h1 mat-dialog-title>Histórico do aluno</h1>
+<div mat-dialog-content>
+
+
+  <mat-form-field appearance="fill">
+    <mat-label>Selecione uma opção</mat-label>
+    <mat-select disableRipple>
+      <mat-option *ngFor="let ano of anos" [value]="ano.ano_historico">{{ano.ano_historico}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+</div>
+
+<div mat-dialog-actions>
+  <button mat-button mat-dialog-close>Fechar</button>
+</div>

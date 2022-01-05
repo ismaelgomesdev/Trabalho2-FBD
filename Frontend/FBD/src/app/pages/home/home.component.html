@@ -12,26 +12,30 @@
                         <app-tabela-alunos [dataSource]="dataSource"></app-tabela-alunos>
                     </div>
                 </mat-tab>
+
                 <mat-tab label="Professores">
                     <div class="tab-content">
-                        <app-tabela-alunos [dataSource]="dataSource"></app-tabela-alunos>
+                        <app-tabela-professores [dataSource]="dataSourceProf"></app-tabela-professores>
                     </div>
                 </mat-tab>
+
                 <mat-tab label="Disciplinas">
                     <div class="tab-content">
-                        <app-tabela-alunos [dataSource]="dataSource"></app-tabela-alunos>
+                        <app-tabela-disciplinas [dataSource]="dataSourceDisc"></app-tabela-disciplinas>
                     </div>
                 </mat-tab>
+
                 <mat-tab label="Turmas">
                     <div class="tab-content">
-                        <app-tabela-alunos [dataSource]="dataSource"></app-tabela-alunos>
+                        <app-tabela-turmas [dataSource]="dataSourceTurm"></app-tabela-turmas>
                     </div>
                 </mat-tab>
-                <mat-tab label="Histórico">
+                <!--<mat-tab label="Histórico">
                     <div class="tab-content">
                         <app-tabela-alunos [dataSource]="dataSource"></app-tabela-alunos>
                     </div>
                 </mat-tab>
+                -->
             </mat-tab-group>
             <div class="example-button-container">
                 <button mat-fab color="warn" aria-label="Example icon button with a home icon">
