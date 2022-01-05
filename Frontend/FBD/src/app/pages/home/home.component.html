@@ -1,0 +1,44 @@
+<div class="home-page">
+    <div class="home-header">
+        <div class="home-container-header-title">
+            <h1>Fundamentos de Banco de Dados</h1>
+        </div>
+    </div>
+    <div class="home-container">
+        <div class="home-tab-container">
+            <mat-tab-group>
+                <mat-tab label="Alunos">
+                    <div class="tab-content">
+                        <app-tabela-alunos [dataSource]="dataSource"></app-tabela-alunos>
+                    </div>
+                </mat-tab>
+                <mat-tab label="Professores">
+                    <div class="tab-content">
+                        <app-tabela-alunos [dataSource]="dataSource"></app-tabela-alunos>
+                    </div>
+                </mat-tab>
+                <mat-tab label="Disciplinas">
+                    <div class="tab-content">
+                        <app-tabela-alunos [dataSource]="dataSource"></app-tabela-alunos>
+                    </div>
+                </mat-tab>
+                <mat-tab label="Turmas">
+                    <div class="tab-content">
+                        <app-tabela-alunos [dataSource]="dataSource"></app-tabela-alunos>
+                    </div>
+                </mat-tab>
+                <mat-tab label="Histórico">
+                    <div class="tab-content">
+                        <app-tabela-alunos [dataSource]="dataSource"></app-tabela-alunos>
+                    </div>
+                </mat-tab>
+            </mat-tab-group>
+            <div class="example-button-container">
+                <button mat-fab color="warn" aria-label="Example icon button with a home icon">
+                    <mat-icon>add</mat-icon>
+                </button>
+            </div>
+        </div>
+
+    </div>
+</div>
