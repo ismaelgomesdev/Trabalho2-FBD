@@ -56,4 +56,16 @@
     z-index: 1;
     bottom: 1rem;
     right: 1rem;
+    button {
+        padding-left: 8px;
+        padding-right: 8px;
+        width: 125px;
+        border-radius: 5px;
+    }
 }
+
+.fab-group > .example-button-container:first-child {
+    margin-bottom: 70px;
+}
+
+

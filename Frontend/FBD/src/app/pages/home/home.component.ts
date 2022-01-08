@@ -1,6 +1,8 @@
 import { Alunos } from './../../interfaces/alunos';
 import { Component, OnInit } from '@angular/core';
 import { RequestServiceService } from './request-service.service';
+import { MatDialog } from '@angular/material/dialog';
+import { ConsultasComponent } from '../components/consultas/consultas.component';
 
 @Component({
   selector: 'app-home',
@@ -15,7 +17,8 @@ export class HomeComponent implements OnInit {
 
 
   constructor(
-    private requestService : RequestServiceService
+    private requestService : RequestServiceService,
+    public dialog: MatDialog
   ) { }
 
   ngOnInit(): void {
@@ -40,6 +43,10 @@ export class HomeComponent implements OnInit {
       this.dataSourceTurm = data;
     })
 
+  }
+
+  openDialog() {
+    this.dialog.open(ConsultasComponent);
   }
 
 }

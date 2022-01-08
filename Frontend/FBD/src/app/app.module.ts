@@ -15,6 +15,7 @@ import { TabelaProfessoresComponent } from './pages/components/tabela-professore
 import { TabelaDisciplinasComponent } from './pages/components/tabela-disciplinas/tabela-disciplinas.component';
 import { TabelaTurmasComponent } from './pages/components/tabela-turmas/tabela-turmas.component';
 import { HistoricoAnoComponent } from './pages/components/historico-ano/historico-ano.component';
+import { ConsultasComponent } from './pages/components/consultas/consultas.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { CommonModule } from '@angular/common';
 import { MatSelectModule } from '@angular/material/select';
@@ -27,7 +28,8 @@ import { MatSelectModule } from '@angular/material/select';
     TabelaProfessoresComponent,
     TabelaDisciplinasComponent,
     TabelaTurmasComponent,
-    HistoricoAnoComponent
+    HistoricoAnoComponent,
+    ConsultasComponent
   ],
   imports: [
     CommonModule,
