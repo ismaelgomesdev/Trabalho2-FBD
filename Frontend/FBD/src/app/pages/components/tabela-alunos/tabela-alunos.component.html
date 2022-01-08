@@ -30,7 +30,7 @@
   <ng-container matColumnDef="historico">
     <th mat-header-cell *matHeaderCellDef> Histórico </th>
     <td mat-cell *matCellDef="let element">
-      <img class="historic-icon" src="../../../../assets/historic.png" alt="" (click)="openDialog()">
+      <img class="historic-icon" src="../../../../assets/historic.png" alt="" (click)="openDialog(element.nome_aluno, element.matricula_aluno)">
     </td>
   </ng-container>
 

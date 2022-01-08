@@ -1,5 +1,4 @@
 import { Component, Input, OnInit } from '@angular/core';
-import {MatDialog} from '@angular/material/dialog';
 import { RequestServiceService } from '../../home/request-service.service';
 
 @Component({
@@ -11,15 +10,27 @@ export class HistoricoAnoComponent implements OnInit {
 
   constructor(private requestService: RequestServiceService) { }
 
-  @Input()
-  nomeAluno : string = '';
+  public _nomeAluno: string = 'Mayron';
+  public _matricula : number = 0;
+  public _dataSource : any;
+  public _displayedColumns: string[] = ['disciplina', 'professor', 'horario', 'nota', 'frequencia'];
 
   anos : any = [];
 
   ngOnInit(): void {
-    this.requestService.GetHistoricosPorAno().subscribe((data) => {
+    this.requestService.GetHistoricosPorAno(this._matricula).subscribe((data) => {
       this.anos = data;
     });
+  }
+
+  alert(ano : any) {
+
+    var response = this.requestService.GetHistoricoAluno(this._matricula, ano);
+
+    response.subscribe((data : any) => {
+      this._dataSource = data;
+    })
+
   }
 
 }

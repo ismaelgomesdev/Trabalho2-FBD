@@ -30,7 +30,11 @@ export class RequestServiceService {
     return this.http.get(`${this.API}/pegarturmas`);
   }
 
-  GetHistoricosPorAno() {
-    return this.http.get(`${this.API}/historico-por-ano`);
+  GetHistoricosPorAno(matricula : number) {
+    return this.http.get(`${this.API}/historico-por-ano?matricula=${matricula}`);
+  }
+
+  GetHistoricoAluno(matricula : number, ano : string) {
+    return this.http.get(`${this.API}/historico-aluno?matricula=${matricula}&ano=${ano}`);
   }
 }
