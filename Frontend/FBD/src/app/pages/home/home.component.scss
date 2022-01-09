@@ -59,13 +59,18 @@
     button {
         padding-left: 8px;
         padding-right: 8px;
-        width: 125px;
+        min-width: 200px;
+        min-height: 60px;
         border-radius: 5px;
     }
 }
 
 .fab-group > .example-button-container:first-child {
     margin-bottom: 70px;
+}
+
+.fab-group > .example-button-container:last-child {
+  margin-bottom: 140px;
 }
 
 

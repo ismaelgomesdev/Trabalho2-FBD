@@ -22,6 +22,8 @@ import { CommonModule } from '@angular/common';
 import { MatSelectModule } from '@angular/material/select';
 import { TabelaResultadosComponent } from './pages/components/consultas/tabela-resultados/tabela-resultados.component';
 import { TabelaResultadosTransacaoComponent } from './pages/components/transacao/tabela-resultados/tabela-resultados.component';
+import {MatMenuModule} from '@angular/material/menu';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 
 @NgModule({
   declarations: [
@@ -48,7 +50,9 @@ import { TabelaResultadosTransacaoComponent } from './pages/components/transacao
     MatIconModule,
     HttpClientModule,
     MatDialogModule,
-    MatSelectModule
+    MatSelectModule,
+    MatMenuModule,
+    MatSnackBarModule
   ],
   providers: [],
   bootstrap: [AppComponent]

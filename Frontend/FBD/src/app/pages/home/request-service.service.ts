@@ -62,6 +62,20 @@ export class RequestServiceService {
     return this.http.get(`${this.API}/transacao`);
   }
 
+  InserirDados() {
+    return this.http.get(`${this.API}/iniciar`);
+  }
 
+  ReiniciarBase() {
+    return this.http.get(`${this.API}/zerar`);
+  }
+
+  ApagarTabelas() {
+    return this.http.get(`${this.API}/deletar`);
+  }
+
+  CriarTabelas() {
+    return this.http.get(`${this.API}/criar`);
+  }
 
 }

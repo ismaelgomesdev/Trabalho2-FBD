@@ -43,7 +43,6 @@ def InserirDisciplinas():
     conn.ExecutarQuery(sql)
     arquivo.close()
 
-
 def InserirAlunos():
     arquivo = open("./Dados/Alunos.csv", "r", encoding='utf-8-sig')
 
@@ -56,7 +55,6 @@ def InserirAlunos():
 
     conn.ExecutarQuery(sql)
     arquivo.close()
-
 
 def InserirProfessores():
     arquivo = open("./Dados/Professores.csv", "r", encoding='utf-8-sig')
@@ -71,7 +69,6 @@ def InserirProfessores():
     conn.ExecutarQuery(sql)
     arquivo.close()
 
-
 def InserirTurmas():
     arquivo = open("./Dados/Turmas.csv", "r", encoding='utf-8-sig')
 
@@ -84,7 +81,6 @@ def InserirTurmas():
 
     conn.ExecutarQuery(sql)
     arquivo.close()
-
 
 def InserirHistoricos():
     arquivo = open("./Dados/Historico.csv", "r", encoding='utf-8-sig')
@@ -100,11 +96,9 @@ def InserirHistoricos():
     conn.ExecutarQuery(sql)
     arquivo.close()
 
-
 def InserirAluno(matricula, nome, semestre, dataNascimento):
     sql = f"INSERT INTO ALUNOS (MATRICULA_ALUNO, NOME_ALUNO, SEMESTRE_ALUNO, DATA_NASCIMENTO_ALUNO) VALUES ({matricula}, '{nome}', {semestre}, '{dataNascimento}');"
     conn.ExecutarQuery(sql)
-
 
 def InserirHistorico(matricula, codigoTurma, codigoDisciplina, codigoProfessor, anoHistorico, frequenciaHistorico, notaHistorico):
     sql = f"INSERT INTO HISTORICOS (MATRICULA_ALUNO, CODIGO_TURMA, CODIGO_DISCIPLINA, CODIGO_PROFESSOR , ANO_HISTORICO, FREQUENCIA_HISTORICO, NOTA_HISTORICO) \
@@ -118,18 +112,15 @@ def RetorarProfessor():
     response = conn.ExecutarQueryPesquisa(sql)
     return response
 
-
 def RetornarAlunos():
     sql = "SELECT * FROM ALUNOS"
     response = conn.ExecutarQueryPesquisa(sql)
     return response
 
-
 def RetornarDisciplinas():
     sql = "SELECT * FROM DISCIPLINAS"
     response = conn.ExecutarQueryPesquisa(sql)
     return response
-
 
 def RetornarTurmas():
     sql = """SELECT DS.NOME_DISCIPLINA, PF.NOME_PROFESSOR, TM.HORARIO_TURMA, TM.ANO_TURMA FROM TURMAS AS TM
@@ -139,7 +130,6 @@ def RetornarTurmas():
     response = conn.ExecutarQueryPesquisa(sql)
     return response
 
-
 def RetornarHistoricosPorAno(matricula):
     sql = f"""SELECT HS.ano_historico FROM HISTORICOS AS HS
 	JOIN ALUNOS AS AL ON HS.matricula_aluno = AL.matricula_aluno
@@ -148,7 +138,6 @@ def RetornarHistoricosPorAno(matricula):
     ORDER BY HS.ano_historico DESC"""
     response = conn.ExecutarQueryPesquisa(sql)
     return response
-
 
 def RetornarHistoricoAluno(matricula, ano):
     sql = f"""SELECT DISCIPLINAS.nome_disciplina, PROFESSORES.nome_professor, TURMAS.horario_turma, HISTORICOS.nota_historico, HISTORICOS.frequencia_historico FROM HISTORICOS
@@ -160,75 +149,66 @@ def RetornarHistoricoAluno(matricula, ano):
     response = conn.ExecutarQueryPesquisa(sql)
     return response
 
-
 def GetAlunosComNotaMaiorQue7():
     sql = f"""SELECT AL.MATRICULA_ALUNO, AL.NOME_ALUNO FROM HISTORICOS AS HS
-	JOIN ALUNOS AS AL ON HS.MATRICULA_ALUNO = AL.MATRICULA_ALUNO
-	JOIN DISCIPLINAS DS ON HS.CODIGO_DISCIPLINA = DS.CODIGO_DISCIPLINA
-WHERE
-	HS.NOTA_HISTORICO > 7 AND
-	DS.NOME_DISCIPLINA = 'Fundamentos de Banco de Dados'"""
+            JOIN ALUNOS AS AL ON HS.MATRICULA_ALUNO = AL.MATRICULA_ALUNO
+            JOIN DISCIPLINAS DS ON HS.CODIGO_DISCIPLINA = DS.CODIGO_DISCIPLINA
+                WHERE
+                HS.NOTA_HISTORICO > 7 AND
+                DS.NOME_DISCIPLINA = 'Fundamentos de Banco de Dados'"""
     response = conn.ExecutarQueryPesquisa(sql)
     return response
-
 
 def GetMediaNotasComputacaoGrafica():
     sql = f"""SELECT DS.NOME_DISCIPLINA, AVG(HS.NOTA_HISTORICO) FROM HISTORICOS AS HS
-	JOIN DISCIPLINAS AS DS ON HS.CODIGO_DISCIPLINA = DS.CODIGO_DISCIPLINA
-WHERE DS.NOME_DISCIPLINA = 'Computação Gráfica I'	
-GROUP BY DS.NOME_DISCIPLINA"""
+                JOIN DISCIPLINAS AS DS ON HS.CODIGO_DISCIPLINA = DS.CODIGO_DISCIPLINA
+            WHERE DS.NOME_DISCIPLINA = 'Computação Gráfica I'	
+            GROUP BY DS.NOME_DISCIPLINA"""
     response = conn.ExecutarQueryPesquisa(sql)
     return response
-
 
 def GetAlunosComFrequenciaMenorQue75():
     sql = f"""SELECT AL.NOME_ALUNO, DS.NOME_DISCIPLINA, HS.FREQUENCIA_HISTORICO FROM HISTORICOS AS HS
-	JOIN DISCIPLINAS AS DS ON HS.CODIGO_DISCIPLINA = DS.CODIGO_DISCIPLINA
-	JOIN ALUNOS AS AL ON HS.MATRICULA_ALUNO = AL.MATRICULA_ALUNO
-WHERE
-	HS.FREQUENCIA_HISTORICO < 0.75
-ORDER BY HS.FREQUENCIA_HISTORICO DESC"""
+            JOIN DISCIPLINAS AS DS ON HS.CODIGO_DISCIPLINA = DS.CODIGO_DISCIPLINA
+            JOIN ALUNOS AS AL ON HS.MATRICULA_ALUNO = AL.MATRICULA_ALUNO
+        WHERE
+            HS.FREQUENCIA_HISTORICO < 0.75
+        ORDER BY HS.FREQUENCIA_HISTORICO DESC"""
     response = conn.ExecutarQueryPesquisa(sql)
     return response
-
 
 def GetProfessoresComAulaParaPeloMenos5Alunos():
     sql = f"""SELECT COUNT(TM.CODIGO_TURMA) AS QUANTIDADE_ALUNOS, PF.NOME_PROFESSOR FROM HISTORICOS AS HS
-	JOIN TURMAS AS TM ON HS.CODIGO_TURMA = TM.CODIGO_TURMA
-	JOIN PROFESSORES AS PF ON HS.CODIGO_PROFESSOR = PF.CODIGO_PROFESSOR
-WHERE
-	PF.AREA_PESQUISA_PROFESSOR = 'Algoritmos e Otimização'
-GROUP BY TM.CODIGO_TURMA, PF.NOME_PROFESSOR
-HAVING COUNT(TM.CODIGO_TURMA) >= 5"""
+            JOIN TURMAS AS TM ON HS.CODIGO_TURMA = TM.CODIGO_TURMA
+            JOIN PROFESSORES AS PF ON HS.CODIGO_PROFESSOR = PF.CODIGO_PROFESSOR
+        WHERE
+            PF.AREA_PESQUISA_PROFESSOR = 'Algoritmos e Otimização'
+        GROUP BY TM.CODIGO_TURMA, PF.NOME_PROFESSOR
+        HAVING COUNT(TM.CODIGO_TURMA) >= 5"""
     response = conn.ExecutarQueryPesquisa(sql)
     return response
 
-
 def GetAlunosComNotaMenorQue5():
     sql = f"""SELECT * FROM HISTORICOS AS HS
-	JOIN ALUNOS AS AL ON HS.MATRICULA_ALUNO = AL.MATRICULA_ALUNO
-	JOIN DISCIPLINAS AS DS ON HS.CODIGO_DISCIPLINA = DS.CODIGO_DISCIPLINA
-WHERE
-	DS.NOME_DISCIPLINA = 'Fundamentos de Banco de Dados'
-	AND HS.NOTA_HISTORICO < 5
-	AND HS.ANO_HISTORICO = '2021.1'"""
+                JOIN ALUNOS AS AL ON HS.MATRICULA_ALUNO = AL.MATRICULA_ALUNO
+                JOIN DISCIPLINAS AS DS ON HS.CODIGO_DISCIPLINA = DS.CODIGO_DISCIPLINA
+            WHERE
+                DS.NOME_DISCIPLINA = 'Fundamentos de Banco de Dados'
+                AND HS.NOTA_HISTORICO < 5
+                AND HS.ANO_HISTORICO = '2021.1'"""
     response = conn.ExecutarQueryPesquisa(sql)
     return response
 
 def Transacao():
     sql = f"""INSERT INTO ALUNOS (MATRICULA_ALUNO, NOME_ALUNO, SEMESTRE_ALUNO, DATA_NASCIMENTO_ALUNO) VALUES (392889, 'Tiago', 3, '2001-04-09');
+            INSERT INTO HISTORICOS (MATRICULA_ALUNO, CODIGO_TURMA,CODIGO_DISCIPLINA, CODIGO_PROFESSOR , ANO_HISTORICO, FREQUENCIA_HISTORICO, NOTA_HISTORICO) VALUES (392889, 1, 1, 1, '2020.1', 0.90, 8);
 
-INSERT INTO HISTORICOS (MATRICULA_ALUNO, CODIGO_TURMA,CODIGO_DISCIPLINA, CODIGO_PROFESSOR , ANO_HISTORICO, FREQUENCIA_HISTORICO, NOTA_HISTORICO) VALUES (392889, 1, 1, 1, '2020.1', 0.90, 8);
-
-SELECT AL.MATRICULA_ALUNO, AL.NOME_ALUNO FROM HISTORICOS AS HS
-	JOIN ALUNOS AS AL ON HS.MATRICULA_ALUNO = AL.MATRICULA_ALUNO
-	JOIN DISCIPLINAS DS ON HS.CODIGO_DISCIPLINA = DS.CODIGO_DISCIPLINA
-WHERE
-	HS.NOTA_HISTORICO > 8 AND
-	DS.NOME_DISCIPLINA = 'Fundamentos de Banco de Dados'""";
+            SELECT AL.MATRICULA_ALUNO, AL.NOME_ALUNO FROM HISTORICOS AS HS
+                JOIN ALUNOS AS AL ON HS.MATRICULA_ALUNO = AL.MATRICULA_ALUNO
+                JOIN DISCIPLINAS DS ON HS.CODIGO_DISCIPLINA = DS.CODIGO_DISCIPLINA
+            WHERE
+                HS.NOTA_HISTORICO > 8 AND
+                DS.NOME_DISCIPLINA = 'Fundamentos de Banco de Dados'"""
     response = conn.ExecutarQueryPesquisa(sql)
     return response
-
-
-
 

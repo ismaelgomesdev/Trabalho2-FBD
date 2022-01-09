@@ -15,15 +15,25 @@ app.config['JSON_AS_ASCII'] = False #caracteres utf-8
 def homepage():
     return "A API está no ar"
 
+@app.route('/criar')
+def CriarTabelas():
+    aux.CriarTabelas()
+    return jsonify("Tabelas criadas com sucesso")
+
+@app.route('/deletar')
+def DeletarTabelas():
+    aux.DroparTabelas()
+    return jsonify("Tabelas excluídas com sucesso")
+
 @app.route('/zerar')
 def ResetarBaseDados():
     aux.ResetarTabelas()
-    return "Base de Dados reiniciada com sucesso"
+    return jsonify("Base de Dados reiniciada com sucesso")
 
 @app.route('/iniciar')
 def IniciarBaseDados():
     aux.Inicializar()
-    return "Dados inseridos com sucesso!"
+    return jsonify("Dados inseridos com sucesso!")
 
 @app.route('/pegaralunos')
 def GetAlunos():

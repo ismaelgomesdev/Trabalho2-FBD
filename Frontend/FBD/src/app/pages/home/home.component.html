@@ -1,57 +1,92 @@
 <div class="home-page">
-    <div class="home-header">
-        <div class="home-container-header-title">
-            <h1>Fundamentos de Banco de Dados</h1>
-        </div>
+  <div class="home-header">
+    <div class="home-container-header-title">
+      <h1>Fundamentos de Banco de Dados</h1>
     </div>
-    <div class="home-container">
-        <div class="home-tab-container">
-            <mat-tab-group>
-                <mat-tab label="Alunos">
-                    <div class="tab-content">
-                        <app-tabela-alunos [dataSource]="dataSource"></app-tabela-alunos>
-                    </div>
-                </mat-tab>
+  </div>
+  <div class="home-container">
+    <div class="home-tab-container">
+      <mat-tab-group>
+        <mat-tab label="Alunos">
+          <div class="tab-content">
+            <app-tabela-alunos [dataSource]="dataSource"></app-tabela-alunos>
+          </div>
+        </mat-tab>
 
-                <mat-tab label="Professores">
-                    <div class="tab-content">
-                        <app-tabela-professores [dataSource]="dataSourceProf"></app-tabela-professores>
-                    </div>
-                </mat-tab>
+        <mat-tab label="Professores">
+          <div class="tab-content">
+            <app-tabela-professores [dataSource]="dataSourceProf"></app-tabela-professores>
+          </div>
+        </mat-tab>
 
-                <mat-tab label="Disciplinas">
-                    <div class="tab-content">
-                        <app-tabela-disciplinas [dataSource]="dataSourceDisc"></app-tabela-disciplinas>
-                    </div>
-                </mat-tab>
+        <mat-tab label="Disciplinas">
+          <div class="tab-content">
+            <app-tabela-disciplinas [dataSource]="dataSourceDisc"></app-tabela-disciplinas>
+          </div>
+        </mat-tab>
 
-                <mat-tab label="Turmas">
-                    <div class="tab-content">
-                        <app-tabela-turmas [dataSource]="dataSourceTurm"></app-tabela-turmas>
-                    </div>
-                </mat-tab>
-                <!--<mat-tab label="Histórico">
+        <mat-tab label="Turmas">
+          <div class="tab-content">
+            <app-tabela-turmas [dataSource]="dataSourceTurm"></app-tabela-turmas>
+          </div>
+        </mat-tab>
+        <!--<mat-tab label="Histórico">
                     <div class="tab-content">
                         <app-tabela-alunos [dataSource]="dataSource"></app-tabela-alunos>
                     </div>
                 </mat-tab>
                 -->
-            </mat-tab-group>
-            <div class="fab-group">
-                <div class="example-button-container">
-                    <button mat-fab color="primary" aria-label="Example icon button with a home icon" (click)="openDialog('consultas')">
-                        <mat-icon>search</mat-icon>
-                        Consultas
-                    </button>
-                </div>
-                <div class="example-button-container">
-                    <button mat-fab color="warn" aria-label="Example icon button with a home icon" (click)="openDialog('transacao')">
-                        <mat-icon>add</mat-icon>
-                        Transação
-                    </button>
-                </div>
-            </div>
+      </mat-tab-group>
+      <div class="fab-group">
+        <div class="example-button-container">
+          <button mat-fab color="primary" aria-label="Example icon button with a home icon"
+            (click)="openDialog('consultas')">
+            <mat-icon>search</mat-icon>
+            Consultas
+          </button>
         </div>
+        <div class="example-button-container">
+          <button mat-fab color="warn" aria-label="Example icon button with a home icon"
+            (click)="openDialog('transacao')">
+            <mat-icon>add</mat-icon>
+            Transação
+          </button>
+        </div>
+        <div class="example-button-container">
 
+          <button mat-icon-button mat-fab color="accent" [matMenuTriggerFor]="menu"
+            aria-label="Example icon-button with a menu">
+            <mat-icon>add</mat-icon>
+            Base da Dados
+          </button>
+
+          <mat-menu #menu="matMenu">
+
+            <button mat-menu-item (click)="openSnackBar('Tabelas criadas com sucesso!', 1)">
+              <mat-icon>view_module</mat-icon>
+              <span>Criar Tabelas</span>
+            </button>
+
+            <button mat-menu-item (click)="openSnackBar('Tabelas apagadas com sucesso!', 2)">
+              <mat-icon>delete</mat-icon>
+              <span>Apagar Tabelas</span>
+            </button>
+
+            <button mat-menu-item (click)="openSnackBar('Dados inseridos com sucesso!', 3)">
+              <mat-icon>add_box</mat-icon>
+              <span>Inserir Dados</span>
+            </button>
+
+            <button mat-menu-item (click)="openSnackBar('Resetado com sucesso!', 4)">
+              <mat-icon>save</mat-icon>
+              <span>Resetar Dados</span>
+            </button>
+
+          </mat-menu>
+
+        </div>
+      </div>
     </div>
+
+  </div>
 </div>

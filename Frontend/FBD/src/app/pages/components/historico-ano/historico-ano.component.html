@@ -1,19 +1,21 @@
-<h1 mat-dialog-title>
-  Histórico do Aluno
-</h1>
-<h4>
-  Nome: {{_nomeAluno}} <br>
-  Matrícula: {{_matricula}}
-</h4>
-<div mat-dialog-content class="modal">
 
+  <h1 mat-dialog-title>
+    Histórico do Aluno
+  </h1>
+  <h4>
+    Nome: {{_nomeAluno}} <br>
+    Matrícula: {{_matricula}}
+  </h4>
 
   <mat-form-field appearance="fill">
     <mat-label>Selecione uma opção</mat-label>
-    <mat-select disableRipple  (selectionChange)="alert($event.value)">
+    <mat-select disableRipple (selectionChange)="alert($event.value)">
       <mat-option *ngFor="let ano of anos" [value]="ano.ano_historico">{{ano.ano_historico}}</mat-option>
     </mat-select>
   </mat-form-field>
+
+
+<div mat-dialog-content class="modal">
 
   <div>
     <table mat-table [dataSource]="_dataSource" class="mat-elevation-z8">
@@ -55,5 +57,5 @@
 </div>
 
 <div mat-dialog-actions>
-  <button mat-button mat-dialog-close>Fechar</button>
+  <button mat-raised-button color="warn" mat-dialog-close>Fechar</button>
 </div>

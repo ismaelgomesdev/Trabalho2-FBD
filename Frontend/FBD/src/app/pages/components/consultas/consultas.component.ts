@@ -83,7 +83,7 @@ export class ConsultasComponent implements OnInit {
               });
               break;
           }
-          
+
           element.active = true;
         } else {
           element.active = false;

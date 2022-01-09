@@ -23,11 +23,13 @@ export class TransacaoComponent implements OnInit {
 
   ngOnInit(): void {
     this.dataSource = this.requestService.Transacao().subscribe((data) => {
-      this.dataSource = data;
-      this.displayedColumns = Object.keys(this.dataSource[0]);
+      if (!!data) {
+        this.dataSource = data;
+        this.displayedColumns = Object.keys(this.dataSource[0]);
+      }
     });
   }
 
 
-  
+
 }
