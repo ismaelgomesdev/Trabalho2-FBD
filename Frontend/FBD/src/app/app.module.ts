@@ -16,10 +16,12 @@ import { TabelaDisciplinasComponent } from './pages/components/tabela-disciplina
 import { TabelaTurmasComponent } from './pages/components/tabela-turmas/tabela-turmas.component';
 import { HistoricoAnoComponent } from './pages/components/historico-ano/historico-ano.component';
 import { ConsultasComponent } from './pages/components/consultas/consultas.component';
+import { TransacaoComponent } from './pages/components/transacao/transacao.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { CommonModule } from '@angular/common';
 import { MatSelectModule } from '@angular/material/select';
 import { TabelaResultadosComponent } from './pages/components/consultas/tabela-resultados/tabela-resultados.component';
+import { TabelaResultadosTransacaoComponent } from './pages/components/transacao/tabela-resultados/tabela-resultados.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +33,9 @@ import { TabelaResultadosComponent } from './pages/components/consultas/tabela-r
     TabelaTurmasComponent,
     HistoricoAnoComponent,
     ConsultasComponent,
-    TabelaResultadosComponent
+    TabelaResultadosComponent,
+    TransacaoComponent,
+    TabelaResultadosTransacaoComponent
   ],
   imports: [
     CommonModule,

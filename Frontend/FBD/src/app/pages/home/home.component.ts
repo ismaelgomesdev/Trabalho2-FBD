@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { RequestServiceService } from './request-service.service';
 import { MatDialog } from '@angular/material/dialog';
 import { ConsultasComponent } from '../components/consultas/consultas.component';
+import { TransacaoComponent } from '../components/transacao/transacao.component';
 
 @Component({
   selector: 'app-home',
@@ -44,8 +45,8 @@ export class HomeComponent implements OnInit {
 
   }
 
-  openDialog() {
-    this.dialog.open(ConsultasComponent);
+  openDialog(dialog: string) {
+    dialog == 'consultas' ? this.dialog.open(ConsultasComponent) : this.dialog.open(TransacaoComponent);
   }
 
 }

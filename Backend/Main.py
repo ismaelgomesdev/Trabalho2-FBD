@@ -84,6 +84,11 @@ def GetAlunosComNotaMenorQue5():
     response = aux.GetAlunosComNotaMenorQue5()
     return jsonify(response)
 
+@app.route('/transacao')
+def Transacao():
+    response = aux.Transacao()
+    return jsonify(response)
+
 #rodar a api 
 
 app.run()

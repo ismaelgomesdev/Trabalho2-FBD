@@ -58,6 +58,10 @@ export class RequestServiceService {
     return this.http.get(`${this.API}/alunos-com-nota-menor-que-5`);
   }
 
+  Transacao() {
+    return this.http.get(`${this.API}/transacao`);
+  }
+
 
 
 }
