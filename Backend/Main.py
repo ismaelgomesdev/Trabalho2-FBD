@@ -50,6 +50,31 @@ def GetHistoricoPorAno():
     response = aux.RetornarHistoricosPorAno(36430)
     return jsonify(response)
 
+@app.route('/alunos-com-nota-maior-que-7')
+def GetAlunosComNotaMaiorQue7():
+    response = aux.GetAlunosComNotaMaiorQue7()
+    return jsonify(response)
+
+@app.route('/media-notas-computacao-grafica')
+def GetMediaNotasComputacaoGrafica():
+    response = aux.GetMediaNotasComputacaoGrafica()
+    return jsonify(response)
+
+@app.route('/alunos-com-frequencia-menor-que-75')
+def GetAlunosComFrequenciaMenorQue75():
+    response = aux.GetAlunosComFrequenciaMenorQue75()
+    return jsonify(response)
+
+@app.route('/professores-com-aula-para-pelo-menos-5-alunos')
+def GetProfessoresComAulaParaPeloMenos5Alunos():
+    response = aux.GetProfessoresComAulaParaPeloMenos5Alunos()
+    return jsonify(response)
+
+@app.route('/alunos-com-nota-menor-que-5')
+def GetAlunosComNotaMenorQue5():
+    response = aux.GetAlunosComNotaMenorQue5()
+    return jsonify(response)
+
 #rodar a api 
 
 app.run()

@@ -133,3 +133,61 @@ def RetornarHistoricosPorAno(matricula):
     GROUP BY HS.ano_historico"""
     response = conn.ExecutarQueryPesquisa(sql)
     return response
+
+
+def GetAlunosComNotaMaiorQue7():
+    sql = f"""SELECT AL.MATRICULA_ALUNO, AL.NOME_ALUNO FROM HISTORICOS AS HS
+	JOIN ALUNOS AS AL ON HS.MATRICULA_ALUNO = AL.MATRICULA_ALUNO
+	JOIN DISCIPLINAS DS ON HS.CODIGO_DISCIPLINA = DS.CODIGO_DISCIPLINA
+WHERE
+	HS.NOTA_HISTORICO > 7 AND
+	DS.NOME_DISCIPLINA = 'Fundamentos de Banco de Dados'"""
+    response = conn.ExecutarQueryPesquisa(sql)
+    return response
+
+
+def GetMediaNotasComputacaoGrafica():
+    sql = f"""SELECT DS.NOME_DISCIPLINA, AVG(HS.NOTA_HISTORICO) FROM HISTORICOS AS HS
+	JOIN DISCIPLINAS AS DS ON HS.CODIGO_DISCIPLINA = DS.CODIGO_DISCIPLINA
+WHERE DS.NOME_DISCIPLINA = 'Computação Gráfica I'	
+GROUP BY DS.NOME_DISCIPLINA"""
+    response = conn.ExecutarQueryPesquisa(sql)
+    return response
+
+
+def GetAlunosComFrequenciaMenorQue75():
+    sql = f"""SELECT AL.NOME_ALUNO, DS.NOME_DISCIPLINA, HS.FREQUENCIA_HISTORICO FROM HISTORICOS AS HS
+	JOIN DISCIPLINAS AS DS ON HS.CODIGO_DISCIPLINA = DS.CODIGO_DISCIPLINA
+	JOIN ALUNOS AS AL ON HS.MATRICULA_ALUNO = AL.MATRICULA_ALUNO
+WHERE
+	HS.FREQUENCIA_HISTORICO < 0.75
+ORDER BY HS.FREQUENCIA_HISTORICO DESC"""
+    response = conn.ExecutarQueryPesquisa(sql)
+    return response
+
+
+def GetProfessoresComAulaParaPeloMenos5Alunos():
+    sql = f"""SELECT COUNT(TM.CODIGO_TURMA) AS QUANTIDADE_ALUNOS, PF.NOME_PROFESSOR FROM HISTORICOS AS HS
+	JOIN TURMAS AS TM ON HS.CODIGO_TURMA = TM.CODIGO_TURMA
+	JOIN PROFESSORES AS PF ON HS.CODIGO_PROFESSOR = PF.CODIGO_PROFESSOR
+WHERE
+	PF.AREA_PESQUISA_PROFESSOR = 'Algoritmos e Otimização'
+GROUP BY TM.CODIGO_TURMA, PF.NOME_PROFESSOR
+HAVING COUNT(TM.CODIGO_TURMA) >= 5"""
+    response = conn.ExecutarQueryPesquisa(sql)
+    return response
+
+
+def GetAlunosComNotaMenorQue5():
+    sql = f"""SELECT * FROM HISTORICOS AS HS
+	JOIN ALUNOS AS AL ON HS.MATRICULA_ALUNO = AL.MATRICULA_ALUNO
+	JOIN DISCIPLINAS AS DS ON HS.CODIGO_DISCIPLINA = DS.CODIGO_DISCIPLINA
+WHERE
+	DS.NOME_DISCIPLINA = 'Fundamentos de Banco de Dados'
+	AND HS.NOTA_HISTORICO < 5
+	AND HS.ANO_HISTORICO = '2021.1'"""
+    response = conn.ExecutarQueryPesquisa(sql)
+    return response
+
+
+
