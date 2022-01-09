@@ -33,4 +33,27 @@ export class RequestServiceService {
   GetHistoricosPorAno() {
     return this.http.get(`${this.API}/historico-por-ano`);
   }
+
+  GetAlunosComNotaMaiorQue7() {
+    return this.http.get(`${this.API}/alunos-com-nota-maior-que-7`);
+  }
+
+  GetMediaNotasComputacaoGrafica() {
+    return this.http.get(`${this.API}/media-notas-computacao-grafica`);
+  }
+
+  GetAlunosComFrequenciaMenorQue75() {
+    return this.http.get(`${this.API}/alunos-com-frequencia-menor-que-75`);
+  }
+
+  GetProfessoresComAulaParaPeloMenos5Alunos() {
+    return this.http.get(`${this.API}/professores-com-aula-para-pelo-menos-5-alunos`);
+  }
+
+  GetAlunosComNotaMenorQue5() {
+    return this.http.get(`${this.API}/alunos-com-nota-menor-que-5`);
+  }
+
+
+
 }

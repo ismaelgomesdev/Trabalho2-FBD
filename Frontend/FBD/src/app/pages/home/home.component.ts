@@ -22,7 +22,6 @@ export class HomeComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-
     var students = this.requestService.getStudents();
     students.subscribe((data) =>{
       this.dataSource = data;

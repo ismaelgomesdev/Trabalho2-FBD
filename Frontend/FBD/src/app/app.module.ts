@@ -19,6 +19,7 @@ import { ConsultasComponent } from './pages/components/consultas/consultas.compo
 import { MatDialogModule } from '@angular/material/dialog';
 import { CommonModule } from '@angular/common';
 import { MatSelectModule } from '@angular/material/select';
+import { TabelaResultadosComponent } from './pages/components/consultas/tabela-resultados/tabela-resultados.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { MatSelectModule } from '@angular/material/select';
     TabelaDisciplinasComponent,
     TabelaTurmasComponent,
     HistoricoAnoComponent,
-    ConsultasComponent
+    ConsultasComponent,
+    TabelaResultadosComponent
   ],
   imports: [
     CommonModule,

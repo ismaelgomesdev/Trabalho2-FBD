@@ -1,9 +1,12 @@
 <h1 mat-dialog-title>Consultas</h1>
 <div mat-dialog-content>
-  
-  <button mat-stroked-button color="primary">Primary</button>
-  
-
+  <div class="queries" *ngIf="!hasActiveQuery()">
+    <button *ngFor="let consulta of consultas" (click)="setActiveQuery(consulta)" mat-stroked-button color="primary">{{consulta.value}}</button>
+  </div>
+  <div class="queries" *ngIf="hasActiveQuery()">
+    <button *ngFor="let consulta of filterFunction(consultas)" (click)="setActiveQuery(consulta, false)" mat-raised-button color="primary"><mat-icon style="transform: scale(0.7);">close</mat-icon>{{consulta.value}}</button>
+    <app-tabela-resultados [dataSource]="dataSource" [displayedColumns]="displayedColumns"></app-tabela-resultados>
+  </div>
 </div>
 
 <div mat-dialog-actions>
