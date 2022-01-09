@@ -47,7 +47,16 @@ def GetTurmas():
 
 @app.route('/historico-por-ano')
 def GetHistoricoPorAno():
-    response = aux.RetornarHistoricosPorAno(36430)
+    matricula = request.args.get('matricula')
+    response = aux.RetornarHistoricosPorAno(matricula)
+    return jsonify(response)
+
+@app.route('/historico-aluno')
+def GetHistoricoAluno():
+    matricula = request.args.get('matricula')
+    ano = request.args.get('ano')
+
+    response = aux.RetornarHistoricoAluno(matricula, ano)
     return jsonify(response)
 
 @app.route('/alunos-com-nota-maior-que-7')

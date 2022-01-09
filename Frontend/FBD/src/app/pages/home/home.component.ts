@@ -18,7 +18,7 @@ export class HomeComponent implements OnInit {
 
   constructor(
     private requestService : RequestServiceService,
-    public dialog: MatDialog
+    public dialog: MatDialog,
   ) { }
 
   ngOnInit(): void {
